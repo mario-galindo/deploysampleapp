@@ -23,6 +23,7 @@ steps:
     exportOptions: auto
     exportMethod: development
     exportTeamId: WK5UC4WVQB
+    signingOption: auto
 
 - task: CopyFiles@2
   inputs:
