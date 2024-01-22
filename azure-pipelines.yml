@@ -34,7 +34,7 @@ steps:
     configuration: 'Release'
     xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
     xcodeVersion: specifyPath
-    xcodeDeveloperDir: '/Applications/Xcode_15.0.app'
+    xcodeDeveloperDir: '/Applications/Xcode_15.1.app'
     packageApp: true
 #    exportOptions: specify
 #    exportMethod: development
