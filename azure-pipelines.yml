@@ -36,11 +36,11 @@ steps:
     xcodeVersion: specifyPath
     xcodeDeveloperDir: '/Applications/Xcode_15.1.app'
     packageApp: true
-#    exportOptions: specify
-#    exportMethod: development
-#    exportTeamId: WK5UC4WVQB
-    signingOption: 'manual'
-    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+    exportOptions: specify
+    exportMethod: development
+    exportTeamId: WK5UC4WVQB
+#    signingOption: 'manual'
+#    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
 
 - task: CopyFiles@2
