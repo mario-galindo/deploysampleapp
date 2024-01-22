@@ -62,7 +62,7 @@ steps:
     appFile: '$(build.artifactStagingDirectory)/deploysampleapp.ipa' 
     #buildVersion: # string. Build version. 
     releaseNotesOption: 'input' # 'input' | 'file'. Alias: releaseNotesSelection. Required. Create release notes. Default: input.
-    releaseNotesInput: # string. Required when releaseNotesSelection = input. Release notes. 
+    releaseNotesInput: Testing
     #releaseNotesFile: # string. Required when releaseNotesSelection = file. Release notes file. 
     #isMandatory: false # boolean. Require users to update to this release. Default: false.
     destinationType: 'groups' # 'groups' | 'store'. Required. Release destination. Default: groups.
