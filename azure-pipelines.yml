@@ -52,3 +52,20 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
+    
+# App Center distribute v3
+# Distribute app builds to testers and users via Visual Studio App Center.
+- task: AppCenterDistribute@3
+  inputs:
+    serverEndpoint: MyAppCenter
+    appSlug: devinhn/deploysampleapp-org
+    appFile: '$(build.artifactStagingDirectory)/deploysampleapp.ipa' 
+    #buildVersion: # string. Build version. 
+    releaseNotesOption: 'input' # 'input' | 'file'. Alias: releaseNotesSelection. Required. Create release notes. Default: input.
+    releaseNotesInput: # string. Required when releaseNotesSelection = input. Release notes. 
+    #releaseNotesFile: # string. Required when releaseNotesSelection = file. Release notes file. 
+    #isMandatory: false # boolean. Require users to update to this release. Default: false.
+    destinationType: 'groups' # 'groups' | 'store'. Required. Release destination. Default: groups.
+    #distributionGroupId: # string. Alias: destinationGroupIds. Optional. Use when destinationType = groups. Destination IDs. 
+    #destinationStoreId: # string. Required when destinationType = store. Destination ID. 
+    #isSilent: # boolean. Optional. Use when destinationType = groups. Do not notify testers. Release will still be available to install. 
