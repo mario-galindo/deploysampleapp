@@ -18,12 +18,11 @@ steps:
     configuration: 'Release'
     xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
     xcodeVersion: specifyPath
-    xcodeDeveloperDir: '/Applications/Xcode_15.1.app'
+    xcodeDeveloperDir: '/Applications/Xcode_15.0.app'
     packageApp: true
     exportOptions: specify
     exportMethod: development
     exportTeamId: WK5UC4WVQB
-    signingOption: auto
 
 - task: CopyFiles@2
   inputs:
