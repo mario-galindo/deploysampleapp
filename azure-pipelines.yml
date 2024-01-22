@@ -59,7 +59,7 @@ steps:
   inputs:
     serverEndpoint: MyAppCenter
     appSlug: devinhn/deploysampleapp-org
-    appFile: '$(build.artifactStagingDirectory)/deploysampleapp.ipa' 
+    appFile: '$(build.artifactStagingDirectory)/**/*.ipa' 
     #buildVersion: # string. Build version. 
     releaseNotesOption: 'input' # 'input' | 'file'. Alias: releaseNotesSelection. Required. Create release notes. Default: input.
     releaseNotesInput: Testing
