@@ -1,10 +1,5 @@
-# Xcode
-# Build, test, and archive an Xcode workspace on macOS.
-# Add steps that install certificates, test, sign, and distribute an app, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/xcode
-
 trigger:
-- main
+- sample
 
 variables:
   - group: ios-pipeline
@@ -14,58 +9,9 @@ pool:
 
 steps:
 
-- task: InstallAppleCertificate@2
-  inputs:
-   certSecureFile: '$(p12FileName)'
-   certPwd: '$(p12Password)'
-   keychain: 'temp'
-   deleteCert: true
+- script: |
+    rm Gemfile.lock
+    bundle install
+    bundle exec arkana
+  displayName: 'Bundle install and execute arkana'
 
-- task: InstallAppleProvisioningProfile@1
-  inputs:
-   provisioningProfileLocation: 'secureFiles'
-   provProfileSecureFile: '$(provisioningProfile)'
-
-- task: Xcode@5
-  inputs:
-    actions: 'build'
-    scheme: ''
-    sdk: 'iphoneos'
-    configuration: 'Release'
-    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
-    xcodeVersion: specifyPath
-    xcodeDeveloperDir: '/Applications/Xcode_15.1.app'
-    packageApp: true
-    exportOptions: specify
-    exportMethod: development
-    exportTeamId: WK5UC4WVQB
-#    signingOption: 'manual'
-#    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
-    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
-
-- task: CopyFiles@2
-  inputs:
-    contents: '**/*.ipa'
-    targetFolder: '$(build.artifactStagingDirectory)'
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-    
-# App Center distribute v3
-# Distribute app builds to testers and users via Visual Studio App Center.
-- task: AppCenterDistribute@3
-  inputs:
-    serverEndpoint: MyAppCenter
-    appSlug: devinhn/deploysampleapp-org
-    appFile: '$(build.artifactStagingDirectory)/**/*.ipa' 
-    #buildVersion: # string. Build version. 
-    releaseNotesOption: 'input' # 'input' | 'file'. Alias: releaseNotesSelection. Required. Create release notes. Default: input.
-    releaseNotesInput: Testing
-    #releaseNotesFile: # string. Required when releaseNotesSelection = file. Release notes file. 
-    #isMandatory: false # boolean. Require users to update to this release. Default: false.
-    destinationType: 'groups' # 'groups' | 'store'. Required. Release destination. Default: groups.
-    #distributionGroupId: # string. Alias: destinationGroupIds. Optional. Use when destinationType = groups. Destination IDs. 
-    #destinationStoreId: # string. Required when destinationType = store. Destination ID. 
-    #isSilent: # boolean. Optional. Use when destinationType = groups. Do not notify testers. Release will still be available to install. 
